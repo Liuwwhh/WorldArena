@@ -55,7 +55,7 @@ wget -O ssv2-probe.pth.tar https://dl.fbaipublicfiles.com/jepa/vith16/ssv2-probe
     "gt_path": "/path/to/gt_video/episode40.mp4",
     "image": "/path/to/gt_frames/episode40.png",
     "prompt": [
-      "In a fixed robotic workspace, generate a rigid, physically consistent..."
+      "Lift the narrow-necked bottle using the right arm and hold upright"(this is from the instruction text of Robotwin 2.0 dataset)
     ]
   },
     ...
