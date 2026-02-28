@@ -56,7 +56,7 @@ wget -O ssv2-probe.pth.tar https://dl.fbaipublicfiles.com/jepa/vith16/ssv2-probe
     "image": "/path/to/gt_frames/episode40.png",
     "prompt": [
       "Lift the narrow-necked bottle using the right arm and hold upright"(this is from the instruction text of Robotwin 2.0 dataset)
-    ]
+    ](to better inference and evaluate, you can choose to add a prefix "In a fixed robotic workspace, generate a rigid, physically consistent embodied robotic arm. The arm maintains high stability with no deformation and enters the frame to" when you train, inference and evaluate the world model)
   },
     ...
 ]
