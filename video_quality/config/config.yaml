@@ -26,9 +26,9 @@ ckpt:
     raft: "your absolute path"/models/raft_model/models/raft-things.pth
   photometric_smoothness:
     cfg: "your absolute path"/WorldArena/video_quality/WorldArena/third_party/SEA-RAFT/config/eval/spring-M.json
-    model: "your absolute path"/models/Tartan-C-T-TSKH-spring540x960-M.pth
+    model: "your absolute path"/WorldArena/video_quality/WorldArena/third_party/checkpoints/Tartan-C-T-TSKH-spring540x960-M.pth
   motion_smoothness:
-    model: "your absolute path"/models/VFIMamba.pkl
+    model: "your absolute path"/WorldArena/video_quality/WorldArena/third_party/checkpoints/VFIMamba.pkl
   image_quality:
     musiq: "your absolute path"/models/pyiqa_model/musiq_spaq_ckpt-358bb6af.pth
   subject_consistency:
