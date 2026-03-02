@@ -16,6 +16,10 @@
   <img src="https://img.shields.io/badge/Leaderboard-HuggingFace-ffcc00?style=for-the-badge&logo=huggingface&logoColor=ffcc00">
 </a>
 
+<a href="https://huggingface.co/datasets/WorldArena/WorldArena_Robotwin2.0">
+  <img src="https://img.shields.io/badge/DATASET-HUGGINGFACE-FFD21E?style=for-the-badge&logo=huggingface&logoColor=FFD21E&labelColor=555555">
+</a>
+
 </div>
 
 
