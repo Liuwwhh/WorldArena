@@ -7,11 +7,11 @@ torchmetrics==1.7.1
 xformers==0.0.35.dev1120
 triton==3.6.0
 
-transformers==4.37.2
+
 huggingface_hub==0.36.2
 accelerate==1.1.0
 sentencepiece==0.2.1
-tokenizers==0.15.2
+
 openai-clip==1.0.1
 
 decord==0.6.0
@@ -61,6 +61,4 @@ psutil==7.1.3
 matplotlib==3.10.7
 pandas==2.3.3
 scikit-learn==1.7.2
-
-# Keep below commented unless you need the full MMCV extras or movie processing
 # moviepy==2.2.1
