@@ -22,6 +22,10 @@ pip install --no-build-isolation mmcv==2.2.0
 # - transformers==4.37.2 (compatible with pyiqa==0.1.14.1)
 # - numpy==1.26.0 (compatible with sam3==0.1.0)
 pip install -r video_quality/requirements.txt
+pip install ipython
+pip install ninja
+pip install mamba-ssm
+pip install transformers==4.51.3
 # Optional: pip install jupyter notebook jupyterlab
 ```
 
@@ -42,9 +46,7 @@ conda activate WorldArena_VLM
 pip install torch==2.9.1 torchvision==0.24.1 torchaudio==2.9.1 --index-url https://download.pytorch.org/whl/cu128
 # VLM dependencies
 pip install -r video_quality/requirements_worldarena_vlm.txt
-# Required libs not listed in the slim deps
-pip install PyYAML==6.0.3 Pillow==10.0.0
-# If you need local wheels (flash-attn etc.), uncomment and set paths in requirements_worldarena_vlm.txt
+pip install git+https://github.com/huggingface/transformers.git
 ```
 
 ### 4. JEPA Environment `WorldArena_JEPA`
@@ -53,7 +55,7 @@ Used for JEPA similarity.
 cd WorldArena
 conda create -y -n WorldArena_JEPA python=3.10
 conda activate WorldArena_JEPA
-pip install -r requirements_jedi.txt
+pip install -r video_quality/requirements_jedi.txt
 # Download weights to video_quality/JEDi/pretrained_models/
 mkdir -p video_quality/JEDi/pretrained_models
 cd video_quality/JEDi/pretrained_models
@@ -84,11 +86,13 @@ Configure local weights and I/O paths in [config](config/config.yaml) (do not ch
 For the first two evaluations, directly use the generated video directory and summary_json; JEPA requires a GT video directory (only .mp4 files following naming rules, no nesting).
 - VLM metrics (interaction quality, perspectivity, instruction following) (requires `WorldArena_VLM` env):
 ```bash
-bash video_quality/run_VLM_judge.sh <MODEL_NAME> <VIDEO_DIR> <SUMMARY_JSON> 
+cd video_quality
+bash run_VLM_judge.sh <MODEL_NAME> <VIDEO_DIR> <SUMMARY_JSON> 
 ```
 - JEPA similarity (requires `WorldArena_JEPA` env):
 ```bash
-bash video_quality/run_evaluation_JEPA.sh
+cd video_quality
+bash run_evaluation_JEPA.sh
 ```
 The following metrics first run a format preprocessing step (the bash already includes it), producing the structure under data_action_following configured in config:
 ```
@@ -132,12 +136,14 @@ Name the three directories `modelname_sort` `modelname_1_sort` `modelname_2_sort
 
 - action following (requires `WorldArena` env):
 ```bash
-bash video_quality/run_action_following.sh <MODEL_NAME> <GEN_VIDEO_DIR> <SUMMARY_JSON>
+cd video_quality
+bash run_action_following.sh <MODEL_NAME> <GEN_VIDEO_DIR> <SUMMARY_JSON>
 # If using a specific split, run preprocess_datasets_diversity.py first, or ensure config data_action_following path exists
 ```
 - Other metrics (requires `WorldArena` env):
 ```bash
-bash video_quality/run_evaluation.sh <MODEL_NAME> <GEN_VIDEO_DIR> <SUMMARY_JSON> <METRIC_LIST> 
+cd video_quality
+bash run_evaluation.sh <MODEL_NAME> <GEN_VIDEO_DIR> <SUMMARY_JSON> <METRIC_LIST> 
 ```
 
 - Metric aggregation (requires `WorldArena` env):
@@ -146,7 +152,4 @@ python video_quality/csv_results/aggregate_results.py --model_name <MODEL_NAME> 
 ```
 You can view all metric results under the csv_results directory.
 
-python video_quality/csv_results/aggregate_results.py --model_name <MODEL_NAME> --base_dir . --csv_name aggregated_results.csv
-```
-You can view all metric results under the csv_results directory.
 
