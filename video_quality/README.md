@@ -14,8 +14,22 @@ Used for standard metrics and action following.
 cd WorldArena
 conda create -y -n WorldArena python=3.10
 conda activate WorldArena
+
+pip install -U pip
+pip install "setuptools<81" wheel
+pip install --no-build-isolation mmcv==2.2.0
+# requirements.txt pins:
+# - transformers==4.37.2 (compatible with pyiqa==0.1.14.1)
+# - numpy==1.26.0 (compatible with sam3==0.1.0)
 pip install -r video_quality/requirements.txt
 # Optional: pip install jupyter notebook jupyterlab
+```
+
+If you still hit install issues from a stale build cache, clear cache and retry:
+```bash
+pip cache purge
+pip install --no-build-isolation mmcv==2.2.0
+pip install --no-cache-dir -r video_quality/requirements.txt
 ```
 
 ### 3. VLM Environment `WorldArena_VLM`
@@ -128,6 +142,10 @@ bash video_quality/run_evaluation.sh <MODEL_NAME> <GEN_VIDEO_DIR> <SUMMARY_JSON>
 
 - Metric aggregation (requires `WorldArena` env):
 ```bash
+python video_quality/csv_results/aggregate_results.py --model_name <MODEL_NAME> --base_dir . --csv_name aggregated_results.csv
+```
+You can view all metric results under the csv_results directory.
+
 python video_quality/csv_results/aggregate_results.py --model_name <MODEL_NAME> --base_dir . --csv_name aggregated_results.csv
 ```
 You can view all metric results under the csv_results directory.
