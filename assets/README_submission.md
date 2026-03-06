@@ -1,4 +1,4 @@
-# WorldArena Evaluation and Submission Guide
+# WorldArena Evaluation and Submission Guideline
 
 This document outlines the procedure for evaluating your model on the WorldArena benchmark and submitting your results for the official leaderboard.
 
