@@ -8,10 +8,10 @@ First, download the test datasets from our official Hugging repository:
 [WorldArena_Robotwin2.0](https://huggingface.co/datasets/WorldArena/WorldArena_Robotwin2.0)
 
 You can download the following folders:
-- `test_dataset`: Evaluation set for **Leaderboard **.
+- `test_dataset`: Evaluation set for **Leaderboard**.
 - `val_dataset`: Used for the **Arena** (interactive comparison). This set allows you to upload your generated videos for a specific episode and compare them against existing baselines with real-time metrics.
 
-Final evaluation results will be synchronized to `Leaderboard` and `Arena (optional)` respectively.
+Final evaluation results will be synchronized to `Leaderboard` and `Online Arena (optional)`, respectively.
 
 ***Notice:*** *The final leaderboard is evaluated on the **test_dataset**. The **val_dataset** is designated for Arena visualization; its inclusion in the submission is optional.*
 
