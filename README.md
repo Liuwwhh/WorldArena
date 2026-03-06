@@ -38,7 +38,7 @@
 
 
 ## 📢 Updates
-
+- [2026/03/06] Open for Submissions.
 - [2026/02/13] Code initial release.
 - [2026/02/13] Leaderboard release.
 
@@ -97,7 +97,7 @@ The official WorldArena leaderboard is hosted on HuggingFace: [![Leaderboard](ht
 
 
 ## 📤 Submission
-Please refer to [submission](https://github.com/tsinghua-fib-lab/WorldArena/blob/main/assets/README_submission.md) for detailed information.
+Please refer to [submission](https://github.com/tsinghua-fib-lab/WorldArena/blob/main/assets/README_submission.md) for result submission.
 
 **Note: Please use the latest version of the test_dataset `(release on 2026.3.6)` for test evaluation on Leaderboard!**
 
