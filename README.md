@@ -38,7 +38,7 @@
 
 
 ## 📢 Updates
-- [2026/03/06] Open for Submissions.
+- [2026/03/06] Open for submissions.
 - [2026/02/13] Code initial release.
 - [2026/02/13] Leaderboard release.
 
