@@ -9,7 +9,7 @@ First, download the test datasets from our official Hugging repository:
 
 You can download the following folders:
 - `test_dataset`: Evaluation set for **Leaderboard**.
-- `val_dataset`: Used for the **Online Arena** (interactive comparison). This set allows you to upload your generated videos for a specific episode and compare them against existing baselines with real-time metrics.
+- `val_dataset`: Used for the **Online Arena** (video head-to-head comparison). This set allows you to upload your generated videos for a specific episode and compare them against existing baselines with real-time metrics.
 
 Final evaluation results will be synchronized to `Leaderboard` and `Online Arena (optional)`, respectively.
 
