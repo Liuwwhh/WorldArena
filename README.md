@@ -20,6 +20,15 @@
   <img src="https://img.shields.io/badge/DATASET-HUGGINGFACE-FFD21E?style=for-the-badge&logo=huggingface&logoColor=FFD21E&labelColor=555555">
 </a>
 
+<a href="https://discord.gg/ZMrJJD55">
+  <img src="https://img.shields.io/badge/Discord-Join%20Us-5865F2?style=for-the-badge&logo=discord&logoColor=white">
+</a>
+
+<a href="./assets/WeChat.jpg" target="_blank">
+  <img src="https://cdn.simpleicons.org/wechat/07C160" width="20" style="vertical-align: middle; margin-right: 5px;"> 
+  <b>WeChat Group</b>
+</a>
+
 </div>
 
 
