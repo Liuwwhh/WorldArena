@@ -20,8 +20,10 @@
   <img src="https://img.shields.io/badge/DATASET-HUGGINGFACE-FFD21E?style=for-the-badge&logo=huggingface&logoColor=FFD21E&labelColor=555555">
 </a>
 
-<a href="https://discord.gg/ZMrJJD55">
-  <img src="https://img.shields.io/badge/Discord-Join%20Us-5865F2?style=for-the-badge&logo=discord&logoColor=white">
+<br>
+<a href="https://discord.gg/ZMrJJD55" target="_blank">
+  <img src="https://cdn.simpleicons.org/discord/5865F2" width="20" style="vertical-align: middle; margin-right: 5px;"> 
+  <b>Discord Group</b>
 </a>
 
 <a href="./assets/WeChat.jpg" target="_blank">
