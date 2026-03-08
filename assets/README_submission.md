@@ -44,7 +44,6 @@ The `model_README.md` should contain:
 - **Submission video set**: Specify which sets you are submitting (`example_test(_1,_2)`, `example_val(_1,_2)`, or `both`).
 - **Other information (optional)**
 
----
 
 ## 3. Submission Process
 
