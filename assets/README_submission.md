@@ -22,7 +22,6 @@ For each episode in the test/validation sets, use your model to generate a video
 - **Length**: Generate **121 frames**.
 - **Frame Rate**: **24 fps**.
 
----
 
 ## 2. Submission Format
 
