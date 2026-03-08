@@ -28,7 +28,7 @@ For each episode in the test/validation sets, use your model to generate a video
 You need to package your generated videos and model information into a single archive (e.g., `.zip`, `.tar`).
 
 ### A) Archive Structure
-Your submission should follow the format of our [example_eval.zip](https://huggingface.co/datasets/WorldArena/WorldArena_Robotwin2.0/blob/main/example_eval.zip). The archive should be named `{Your_Model_Name}_eval` and contain:
+Your submission should follow the format of [example_eval.zip](https://huggingface.co/datasets/WorldArena/WorldArena_Robotwin2.0/blob/main/example_eval.zip). The archive should be named `{Your_Model_Name}_eval` and contain:
 1. **Video Folders**: Separate folders for each evaluation set (e.g., `example_test(_1,_2)`, `example_arena(_1,_2)`).
 2. **Model Documentation**: A `model_README.md` (or `.txt`) file.
 
