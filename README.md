@@ -90,7 +90,7 @@ The official WorldArena leaderboard is hosted on HuggingFace: [![Leaderboard](ht
 ## 📤 Submission
 Please refer to [submission](https://github.com/tsinghua-fib-lab/WorldArena/blob/main/assets/README_submission.md) for result submission.
 
-**Note: Please use the latest version of the test_dataset `(release on 2026.3.6)` for the submission!**
+**Note: Please use the latest version of the test_dataset `(released on 2026.3.6)` for the submission!**
 
 ## 👥 Human Evaluation
 Be part of shaping the future of embodied world models!  👉 **Start here:**  [Human Evaluation](https://sd64n7jjtvotb9m1apn80.apigateway-cn-beijing.volceapi.com/)
