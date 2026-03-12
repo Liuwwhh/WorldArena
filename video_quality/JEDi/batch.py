@@ -7,6 +7,7 @@ from torch.utils.data import Dataset, DataLoader
 
 # video decode
 import decord
+import os
 from decord import VideoReader, cpu
 
 # resize
@@ -122,6 +123,9 @@ def main():
     parser.add_argument("--max_samples", type=int, default=0, help="0 means use all intersected pairs")
     parser.add_argument("--save_intersection", type=str, default="intersection_names.json")
     parser.add_argument("--seed", type=int, default=123)
+    parser.add_argument("--model_dir", type=str, default="pretrained_models", help="Directory containing vith16.pth.tar and ssv2-probe.pth.tar")
+    parser.add_argument("--config_path", type=str, default="configs/vith16_ssv2_16x2x3.yaml", help="Local JEPA config path")
+    parser.add_argument("--output_root", type=str, required=True, help="the path of the result")
     args = parser.parse_args()
 
     torch.manual_seed(args.seed)
@@ -179,7 +183,9 @@ def main():
     print("==============================\n")
     try:
         gen_dir_name = Path(args.gen_dir).name
-        out_json = "Path/to/WorldArena/video_quality/output_JEDi"/Path(f"{gen_dir_name}.json")
+        output_root=args.output_root
+        out_json = Path(output_root) / f"results.json"
+        os.makedirs(out_json.parent, exist_ok=True)
         result = {
             "gen_dir": str(args.gen_dir),
             "real_dir": str(args.real_dir),

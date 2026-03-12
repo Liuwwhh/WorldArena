@@ -23,9 +23,7 @@ except ImportError:
     BILINEAR = Image.BILINEAR
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-CACHE_DIR = os.environ.get('VBENCH_CACHE_DIR')
-if CACHE_DIR is None:
-    CACHE_DIR = os.path.join(PROJECT_ROOT, 'vbench_cache')
+
 
 from .distributed import (
     get_rank,
@@ -278,7 +276,6 @@ def init_submodules(dimension_list, local=False, **kwargs):
     if local:
         logger.info("\x1b[32m[Local Mode]\x1b[0m Working in local mode, please make sure that the pre-trained model has been fully downloaded.")
 
-    os.makedirs(CACHE_DIR, exist_ok=True)
 
     for dimension in dimension_list:
         if dimension == 'background_consistency':

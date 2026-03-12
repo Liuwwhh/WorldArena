@@ -534,17 +534,6 @@ def process_video_with_tracking(input_path, output_path, detector=None, gid=None
         # ===== Save trajectory data =====
         trajectory_data.append([list(left_current), list(right_current)])
         
-        # # ===== 添加帧编号和轨迹长度信息 =====
-        # # 在左上角显示帧编号
-        # cv2.putText(annotated_frame, f"Frame: {global_frame_idx}", (10, 30),
-        #            cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
-        
-        # # 显示轨迹长度
-        # cv2.putText(annotated_frame, f"Left Traj: {len(left_track_history)}", (10, 60),
-        #            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 1)
-        # cv2.putText(annotated_frame, f"Right Traj: {len(right_track_history)}", (10, 80),
-        #            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1)
-        
         # ===== Write video frame =====
         output_frame = av.VideoFrame.from_ndarray(annotated_frame, format='rgb24')
         for packet in output_stream.encode(output_frame):

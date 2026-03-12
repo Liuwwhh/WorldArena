@@ -23,7 +23,7 @@ COLUMN_ORDER: List[str] = [
     "Trajectory Accuracy",
     "Photometric Consistency",
     "Motion Smoothness",
-    "JEPA_Similarity",
+    "JEPA Similarity",
 ]
 
 # Map metric keys from JSON to CSV column names
@@ -43,7 +43,7 @@ METRIC_KEY_MAP: Dict[str, str] = {
     "trajectory_accuracy": "Trajectory Accuracy",
     "photometric_consistency": "Photometric Consistency",
     "motion_smoothness": "Motion Smoothness",
-    "jepa_similarity": "JEPA_Similarity",
+    "jepa_similarity": "JEPA Similarity",
 }
 
 

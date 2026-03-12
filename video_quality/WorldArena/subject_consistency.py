@@ -92,9 +92,49 @@ def compute_subject_consistency(json_dir, submodules_list, **kwargs):
     submodules_kwargs = dict(submodules_list)
     read_frame = submodules_kwargs.pop('read_frame', False)
     raft_model_path = submodules_kwargs.pop('raft_model', None)
+    dino_weight_path = submodules_kwargs.pop('path', None)
     if raft_model_path is None:
         raise ValueError("subject_consistency requires raft_model checkpoint from config")
-    dino_model = torch.hub.load(**submodules_kwargs).to(device)
+
+    # Always construct model from local repo without triggering hub URL download.
+    # Then load checkpoint weights from config ckpt.subject_consistency.weight.
+    if dino_weight_path is None:
+        raise ValueError("subject_consistency requires local dino weight path from config")
+    if not os.path.isfile(dino_weight_path):
+        raise FileNotFoundError(f"subject_consistency dino weight not found: {dino_weight_path}")
+
+    dino_model = torch.hub.load(pretrained=False, **submodules_kwargs).to(device)
+
+    ckpt = torch.load(dino_weight_path, map_location='cpu')
+    if isinstance(ckpt, dict):
+        if 'state_dict' in ckpt and isinstance(ckpt['state_dict'], dict):
+            state_dict = ckpt['state_dict']
+        elif 'teacher' in ckpt and isinstance(ckpt['teacher'], dict):
+            state_dict = ckpt['teacher']
+        elif 'model' in ckpt and isinstance(ckpt['model'], dict):
+            state_dict = ckpt['model']
+        else:
+            state_dict = ckpt
+    else:
+        state_dict = ckpt
+
+    # remove possible wrappers from different training/export styles
+    cleaned_state_dict = {}
+    for k, v in state_dict.items():
+        nk = k
+        if nk.startswith('module.'):
+            nk = nk[len('module.'):]
+        if nk.startswith('backbone.'):
+            nk = nk[len('backbone.'):]
+        cleaned_state_dict[nk] = v
+
+    missing, unexpected = dino_model.load_state_dict(cleaned_state_dict, strict=False)
+    if missing:
+        logger.warning(f"DINO missing keys when loading local ckpt: {len(missing)}")
+    if unexpected:
+        logger.warning(f"DINO unexpected keys when loading local ckpt: {len(unexpected)}")
+
+    dino_model.eval()
     logger.info("Initialize DINO success")
     video_list, _ = load_dimension_info(json_dir, dimension='subject_consistency', lang='en')
     video_list = distribute_list_to_rank(video_list)

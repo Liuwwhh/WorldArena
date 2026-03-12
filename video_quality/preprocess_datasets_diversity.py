@@ -77,7 +77,7 @@ def process_item(item, gen_video_dir, output_base):
     dir_name_1 = os.path.dirname(gen_video_dir)
 
     
-    new_name_1 = base_name_1.replace("_sort", "_1_sort")
+    new_name_1 = base_name_1.replace("_test", "_test_1")
     
     gen_video_dir_1 = os.path.join(dir_name_1, new_name_1)
     target_gen_video_2 = Path(gen_video_dir_1) / f"{id1}_{id2}.mp4"
@@ -94,7 +94,7 @@ def process_item(item, gen_video_dir, output_base):
     dir_name_2 = os.path.dirname(gen_video_dir)
 
   
-    new_name_2 = base_name_2.replace("_sort", "_2_sort")
+    new_name_2 = base_name_2.replace("_test", "_test_2")
    
     gen_video_dir_2 = os.path.join(dir_name_2, new_name_2)
     target_gen_video_3 = Path(gen_video_dir_2) / f"{id1}_{id2}.mp4"

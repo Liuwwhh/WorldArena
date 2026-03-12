@@ -28,7 +28,6 @@ from .flow_score import compute_flow_score
 from .flow_aepe_metrics import compute_photometric_smoothness
 from .motion_smoothness_metrics import compute_motion_smoothness
 
-import csv
 import re
 from collections import defaultdict
 from .depth_accuracy import compute_depth_accuracy
@@ -137,7 +136,7 @@ def _to_standard_results(metric: str, results, data_base: str):
 class WorldArenaBenchmark(object):
     def __init__(self, device, output_path):
         self.device = device                        # cuda or cpu
-        self.output_path = output_path              # output directory to save VBench results
+        self.output_path = output_path             
         os.makedirs(self.output_path, exist_ok=True)
 
     def build_full_dimension_list(self, ):

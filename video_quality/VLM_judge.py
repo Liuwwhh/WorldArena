@@ -8,6 +8,7 @@ import cv2
 import torch
 import yaml
 from PIL import Image
+from tqdm import tqdm
 from transformers import AutoProcessor, Qwen3VLForConditionalGeneration
 
 DEFAULT_MODEL_PATH = "your absolute path"
@@ -32,7 +33,7 @@ def load_instruction_json(json_path):
 
         path_obj = Path(gt_path)
         if len(path_obj.parts) >= 5:
-            generated_filename = f"{path_obj.parts[-5]}_{path_obj.parts[-1].split('.')[0]}.mp4"
+            generated_filename = f"{path_obj.parts[-1].split('.')[0]}.mp4"
         else:
             base_name = os.path.basename(gt_path)
             generated_filename = f"unknown_{base_name}"
@@ -234,7 +235,7 @@ def vlm_judge(model_name, video_dir, summary_json, output_root, tmp_root, metric
     videos.sort()
 
     results = []
-    for video_path in videos:
+    for video_path in tqdm(videos, desc=f"{model_name} evaluating", ncols=100):
         item = {"video": os.path.basename(video_path), "metrics": {}, "raw_response_file": None, "error": None}
         frames = sample_frames(video_path, num_frames=num_frames)
         if not frames:
@@ -266,7 +267,7 @@ def vlm_judge(model_name, video_dir, summary_json, output_root, tmp_root, metric
         results.append(item)
 
     # Save final aggregated results
-    out_dir = os.path.join(output_root, model_name.lower())
+    out_dir = os.path.join(output_root, model_name)
     os.makedirs(out_dir, exist_ok=True)
     out_file = os.path.join(out_dir, f"{model_name}_summary_val_all_intern.json")
     with open(out_file, "w", encoding="utf-8") as f:

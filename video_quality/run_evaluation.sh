@@ -49,7 +49,8 @@ if [ ${#EVAL_METRICS[@]} -gt 0 ]; then
     python preprocess_datasets.py --summary_json "$SUMMARY_JSON" --gen_video_dir "$GEN_VIDEO_DIR" --output_base "$DATA_DIR"
     echo ">>> Running processing (Resize & Detection)..."
     python ./processing/video_resize.py --config_path "$CONFIG_PATH"
-    python ./processing/detection_tracking.py --config_path "$CONFIG_PATH"
+    # python ./processing/detection_tracking.py --config_path "$CONFIG_PATH" # first used for detection
+    python ./processing/detection_tracking.py --config_path "$CONFIG_PATH" --detect_gt
 
     echo ">>> Starting Standard Evaluation: ${EVAL_METRICS[*]}"
     python evaluate.py --dimension ${EVAL_METRICS[@]} --config "$CONFIG_PATH" --overwrite

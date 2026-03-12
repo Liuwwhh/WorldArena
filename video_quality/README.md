@@ -77,7 +77,7 @@ wget -O ssv2-probe.pth.tar https://dl.fbaipublicfiles.com/jepa/vith16/ssv2-probe
     ...
 ]
 ```
-- Generated video directory must be named `modelname_sort`; put only videos inside, named `{taskname}_episode_{xx}.mp4`; no subfolders allowed.
+- Generated video directory must be named `modelname_test`; put only videos inside, named `{taskname}_episode_{xx}.mp4`; no subfolders allowed.
 
 ### 6. External Weights / Paths
 Configure local weights and I/O paths in [config](config/config.yaml) (do not change model_name: test):
@@ -92,7 +92,7 @@ bash run_VLM_judge.sh <MODEL_NAME> <VIDEO_DIR> <SUMMARY_JSON>
 - JEPA similarity (requires `WorldArena_JEPA` env):
 ```bash
 cd video_quality
-bash run_evaluation_JEPA.sh
+bash run_evaluation_JEPA.sh <VIDEO_DIR>
 ```
 The following metrics first run a format preprocessing step (the bash already includes it), producing the structure under data_action_following configured in config:
 ```
@@ -132,7 +132,7 @@ Videos in subfolders 2 and 3 can be created by modifying the original prompt to 
 
 Use these two prompts to generate two new action videos. If the action-guided video lacks a modifiable prompt, consider using other actions from the same task to achieve different actions.
 
-Name the three directories `modelname_sort` `modelname_1_sort` `modelname_2_sort`:
+Name the three directories `modelname_test` `modelname_test_1` `modelname_test_2`:
 
 - action following (requires `WorldArena` env):
 ```bash

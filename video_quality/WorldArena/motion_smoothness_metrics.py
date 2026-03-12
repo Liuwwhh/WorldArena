@@ -6,7 +6,6 @@ import cv2
 import numpy as np
 from tqdm import tqdm
 from torchmetrics.image import StructuralSimilarityIndexMeasure
-from torchmetrics.image.lpip import LearnedPerceptualImagePatchSimilarity
 
 # Ensure VFIMamba is importable
 from . import third_party  # noqa: F401
@@ -54,7 +53,6 @@ class MotionSmoothnessMetric:
 
         self._model = model
         self._ssim_metric = StructuralSimilarityIndexMeasure().to(self._device)
-        self._lpips_metric = LearnedPerceptualImagePatchSimilarity(net_type="alex").to(self._device)
         # self._psnr_metric = PeakSignalNoiseRatioMetric()
         
     def _compute_scores(self, rendered_images: List[np.ndarray]) -> float:

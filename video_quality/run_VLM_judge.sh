@@ -21,6 +21,7 @@ export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 
 source "$(conda info --base)/etc/profile.d/conda.sh"
 conda activate WorldArena_VLM
+export PATH="your absolute path:$PATH"
 
 python3 "$PY" \
   --model_name "$MODEL_NAME" \
