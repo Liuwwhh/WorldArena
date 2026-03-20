@@ -43,6 +43,7 @@
 - [Embodied Task Evaluation](#-embodied-task-evaluation)
 - [Leaderboard](#-leaderboard)
 - [Submission](#-submission)
+- [Online Arena](#-online-arena)
 - [Human Evaluation](#-human-evaluation)
 - [Citation](#-citation)
 
