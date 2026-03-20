@@ -49,6 +49,7 @@
 
 
 ## 📢 Updates
+- [2026/03/20] Online arena release.
 - [2026/03/06] Open for submissions.
 - [2026/02/13] Code initial release.
 - [2026/02/13] Leaderboard release.
