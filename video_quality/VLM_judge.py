@@ -80,7 +80,7 @@ def build_multi_metric_prompt(instruction_text=None):
     prompt = """ """
     if instruction_text:
         prompt += f"\n**VIDEO INSTRUCTION:** {instruction_text}\n"
-    prompt = """
+    prompt += """
 You are an expert evaluator for robot interaction videos. You are evaluating videos generated for **embodied AI manipulation scenarios**, specifically focusing on robotic arms interacting with objects in tabletop environments.
 **EVALUATION CONTEXT:**
 - Target scenario: Robotic manipulation (e.g., pick-place, push, grasp)
