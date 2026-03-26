@@ -59,6 +59,6 @@ Email your archive to: **WorldArena1@outlook.com**
 
 ## 4. Evaluation Cycle & Leaderboard Updates
 
-- **Updates**: After your submission, the model will be evaluated and updated to the [WorldArena Leaderboard](https://huggingface.co/spaces/WorldArena/WorldArena) within **3–4 days**.
+- **Updates**: After your submission, the model will be evaluated and updated to the [WorldArena Leaderboard](https://huggingface.co/spaces/WorldArena/WorldArena).
 - **Notification**: We will send you a confirmation email once the evaluation is complete. Thank you for your patience and contribution!
 
