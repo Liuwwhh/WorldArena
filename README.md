@@ -4,6 +4,10 @@
 
 <div align="center">
 
+<a href="http://cvpr2026challenge.world-arena.ai/">
+  <img src="https://img.shields.io/badge/Challenge-CVPR%202026-2563eb?style=for-the-badge&logo=googlescholar&logoColor=white">
+</a>
+
 <a href="https://world-arena.ai/">
   <img src="https://img.shields.io/badge/Website-WorldArena-2563eb?style=for-the-badge&logo=googlechrome&logoColor=white">
 </a>
@@ -50,6 +54,7 @@
 
 
 ## 📢 Updates
+- [2026/03/26] WorldArena Challenge@CVPR 2026 open.
 - [2026/03/20] Online arena release.
 - [2026/03/06] Open for submissions.
 - [2026/02/13] Code initial release.
