@@ -152,4 +152,46 @@ python video_quality/csv_results/aggregate_results.py --model_name <MODEL_NAME> 
 ```
 You can view all metric results under the csv_results directory.
 
+### 8. One-Click Evaluation from `results_inference`
+If your inference output is already in the following format:
+- `results_inference/videos/*.mp4` (stitched videos, left column = GT, right column = generated),
+- `results_inference/sample_records.jsonl` (prompt mapping),
 
+you can run automatic splitting + data preparation + evaluation with:
+
+```bash
+cd WorldArena
+python easy_eval_results_inference.py \
+  --results_dir /path/to/results_inference \
+  --model_name my_model \
+  --run_standard \
+  --run_action_following \
+  --run_vlm \
+  --run_jepa
+```
+
+If you want one command to automatically switch among the three conda envs
+(`WorldArena`, `WorldArena_VLM`, `WorldArena_JEPA`), use:
+
+```bash
+cd WorldArena
+CUDA_VISIBLE_DEVICES=0 python easy_eval_results_inference.py --results_dir /data/liuwenhao/WM/results_inference --model_name test1 --run_standard --run_action_following --run_vlm --run_jepa --auto_env_switch
+```
+
+You can also override env names:
+
+```bash
+python easy_eval_results_inference.py \
+  --results_dir /path/to/results_inference \
+  --run_standard --run_vlm --run_jepa \
+  --auto_env_switch \
+  --env_base my_base_env \
+  --env_vlm my_vlm_env \
+  --env_jepa my_jepa_env
+```
+
+Notes:
+- `--metrics auto` is used by default: the script auto-skips metrics whose ckpt paths are placeholders/missing in `video_quality/config/config.yaml`.
+- If your stitched video is 3-row layout and you only want one row, use `--row_mode top|middle|bottom`. Default is `full` (entire column).
+- Prepared files, intermediate outputs, and final CSV are saved under:
+  `results_inference/worldarena_auto_eval/`.

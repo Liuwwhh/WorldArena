@@ -128,6 +128,21 @@ def main():
 
         elif dim in ['psnr', 'ssim']:
             pass
+
+        elif dim == 'mse':
+            pass
+
+        elif dim == 'lpips':
+            kwargs[f"{dim}_alexnet_ckpt"] = config.get('ckpt', {}).get(dim, {}).get('alexnet', None)
+            print(f"{dim}: alexnet = {kwargs[f'{dim}_alexnet_ckpt']}")
+
+        elif dim == 'fid':
+            kwargs[f"{dim}_inception_ckpt"] = config.get('ckpt', {}).get(dim, {}).get('inception', None)
+            print(f"{dim}: inception = {kwargs[f'{dim}_inception_ckpt']}")
+
+        elif dim == 'fvd':
+            kwargs[f"{dim}_i3d_ckpt"] = config.get('ckpt', {}).get(dim, {}).get('i3d', None)
+            print(f"{dim}: i3d = {kwargs[f'{dim}_i3d_ckpt']}")
             
         else:           
             kwargs[f"{dim}_model_ckpt"] = config.get('ckpt',{}).get(dim, None)

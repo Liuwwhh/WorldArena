@@ -33,9 +33,19 @@ def dist_init():
     if 'WORLD_SIZE' not in os.environ:
         os.environ['WORLD_SIZE'] = '1'
 
+    world_size = int(os.environ.get('WORLD_SIZE', '1'))
+    local_rank = int(os.environ.get('LOCAL_RANK', '0'))
+
+    # Single-process evaluation does not need distributed rendezvous.
+    if world_size <= 1:
+        if torch.cuda.is_available():
+            torch.cuda.set_device(local_rank)
+        return
+
     backend = 'gloo' if os.name == 'nt' else 'nccl'
     torch.distributed.init_process_group(backend=backend, init_method='env://')
-    torch.cuda.set_device(int(os.environ.get('LOCAL_RANK', '0')))
+    if torch.cuda.is_available():
+        torch.cuda.set_device(local_rank)
 
 
 def all_gather(data):

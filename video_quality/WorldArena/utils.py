@@ -334,6 +334,21 @@ def init_submodules(dimension_list, local=False, **kwargs):
                 'clip_model': kwargs.get(f"{dimension}_clip_model_ckpt", None)
             }
 
+        elif dimension == 'lpips':
+            submodules_dict[dimension] = {
+                'alexnet_ckpt': kwargs.get(f"{dimension}_alexnet_ckpt", None),
+            }
+
+        elif dimension == 'fid':
+            submodules_dict[dimension] = {
+                'inception_ckpt': kwargs.get(f"{dimension}_inception_ckpt", None),
+            }
+
+        elif dimension == 'fvd':
+            submodules_dict[dimension] = {
+                'i3d_ckpt': kwargs.get(f"{dimension}_i3d_ckpt", None),
+            }
+
         else:
             model_ckpt = kwargs.get(f"{dimension}_model_ckpt", None)
             submodules_dict[dimension] = {

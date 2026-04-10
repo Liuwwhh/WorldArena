@@ -1,7 +1,5 @@
 import os
 import cv2
-import decord
-import numpy as np
 import yaml
 
 
@@ -55,4 +53,3 @@ if __name__ == "__main__":
     data_base = config['data']['val_base']
 
     process_video_or_images(data_base)
-

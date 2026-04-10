@@ -27,6 +27,12 @@ from .subject_consistency import compute_subject_consistency
 from .flow_score import compute_flow_score
 from .flow_aepe_metrics import compute_photometric_smoothness
 from .motion_smoothness_metrics import compute_motion_smoothness
+from .extra_metrics import (
+    compute_mse_metric,
+    compute_lpips_metric,
+    compute_fid_metric,
+    compute_fvd_metric,
+)
 
 import re
 from collections import defaultdict
@@ -142,6 +148,10 @@ class WorldArenaBenchmark(object):
     def build_full_dimension_list(self, ):
         return [
             'action_following',
+            'mse',
+            'lpips',
+            'fid',
+            'fvd',
             'trajectory_accuracy',
             'semantic_alignment',
             'depth_accuracy',
@@ -347,6 +357,38 @@ class WorldArenaBenchmark(object):
                         gt_path=gt_path, pd_path=data_base, metric_names=["ssim"]
                     )
 
+                elif dimension == 'mse':
+                    results = compute_mse_metric(
+                        gt_path=gt_path, pd_path=data_base
+                    )
+
+                elif dimension == 'lpips':
+                    submodules_list = submodules_dict[dimension]
+                    results = compute_lpips_metric(
+                        gt_path=gt_path,
+                        pd_path=data_base,
+                        alexnet_ckpt=submodules_list.get('alexnet_ckpt'),
+                        device=self.device,
+                    )
+
+                elif dimension == 'fid':
+                    submodules_list = submodules_dict[dimension]
+                    results = compute_fid_metric(
+                        gt_path=gt_path,
+                        pd_path=data_base,
+                        inception_ckpt=submodules_list.get('inception_ckpt'),
+                        device=self.device,
+                    )
+
+                elif dimension == 'fvd':
+                    submodules_list = submodules_dict[dimension]
+                    results = compute_fvd_metric(
+                        gt_path=gt_path,
+                        pd_path=data_base,
+                        i3d_ckpt=submodules_list.get('i3d_ckpt'),
+                        device=self.device,
+                    )
+
                 elif dimension == 'depth_accuracy':
                     submodules_list = submodules_dict[dimension]
                     results = compute_depth_accuracy(
@@ -417,7 +459,6 @@ class WorldArenaBenchmark(object):
 
             with open(json_path, "r") as f:
                 results_dict = json.load(f)
-
 
 
 

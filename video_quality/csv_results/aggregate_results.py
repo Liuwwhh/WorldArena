@@ -21,6 +21,10 @@ COLUMN_ORDER: List[str] = [
     "Flow Score",
     "Depth Accuracy",
     "Trajectory Accuracy",
+    "MSE",
+    "LPIPS",
+    "FID",
+    "FVD",
     "Photometric Consistency",
     "Motion Smoothness",
     "JEPA Similarity",
@@ -41,6 +45,11 @@ METRIC_KEY_MAP: Dict[str, str] = {
     "flow_score": "Flow Score",
     "depth_accuracy": "Depth Accuracy",
     "trajectory_accuracy": "Trajectory Accuracy",
+    "mse": "MSE",
+    "lpips": "LPIPS",
+    "fid": "FID",
+    "fvd": "FVD",
+    "photometric_smoothness": "Photometric Consistency",
     "photometric_consistency": "Photometric Consistency",
     "motion_smoothness": "Motion Smoothness",
     "jepa_similarity": "JEPA Similarity",
@@ -216,7 +225,7 @@ def aggregate_results(
             if metric_col in COLUMN_ORDER:
                 row[metric_col] = value
         if jepa_score is not None:
-            row["JEPA_Similarity"] = jepa_score
+            row["JEPA Similarity"] = jepa_score
         csv_rows.append(row)
 
     # Ensure output directory exists

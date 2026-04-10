@@ -2,11 +2,40 @@ import torch
 import torch.nn.functional as F
 import numpy as np
 from scipy import interpolate
+from typing import Dict
+
+try:
+    from safetensors.torch import load_file as safetensors_load_file
+except Exception:  # noqa: BLE001
+    safetensors_load_file = None
 
 def load_ckpt(model, path):
     """ Load checkpoint """
-    state_dict = torch.load(path, map_location=torch.device('cpu'))
-    model.load_state_dict(state_dict, strict=False)
+    path_str = str(path)
+    if path_str.lower().endswith(".safetensors"):
+        if safetensors_load_file is None:
+            raise ImportError(
+                "Checkpoint is .safetensors but `safetensors` is not installed."
+            )
+        state_dict = safetensors_load_file(path_str, device="cpu")
+    else:
+        state_dict = torch.load(path_str, map_location=torch.device("cpu"))
+
+    if isinstance(state_dict, dict):
+        if "state_dict" in state_dict and isinstance(state_dict["state_dict"], dict):
+            state_dict = state_dict["state_dict"]
+        elif "model" in state_dict and isinstance(state_dict["model"], dict):
+            state_dict = state_dict["model"]
+
+    if not isinstance(state_dict, dict):
+        raise TypeError(f"Unsupported checkpoint format for: {path_str}")
+
+    cleaned_state_dict: Dict[str, torch.Tensor] = {}
+    for k, v in state_dict.items():
+        nk = k[7:] if isinstance(k, str) and k.startswith("module.") else k
+        cleaned_state_dict[nk] = v
+
+    model.load_state_dict(cleaned_state_dict, strict=False)
 
 def resize_data(img1, img2, flow, factor=1.0):
     _, _, h, w = img1.shape
